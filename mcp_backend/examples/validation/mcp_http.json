@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "transport": "authenticated MCP Streamable HTTP",
+  "field": {
+    "T_average_K": 298.1499999999947,
+    "heat_flux_W_m2": 999.9999999999853,
+    "analytic_T_K": 298.15,
+    "analytic_flux_W_m2": 1000,
+    "checks_passed": true
+  },
+  "saved_model_name_preserved": true,
+  "reconnected_temperature_K": 298.1499999999947,
+  "scope": "Real Python MCP SDK client to live HTTP MCP service to a separate real COMSOL server; Doubao client not involved."
+}

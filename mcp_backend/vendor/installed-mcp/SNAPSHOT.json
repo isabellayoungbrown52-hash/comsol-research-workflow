@@ -1,0 +1,153 @@
+{
+  "upstream": "https://github.com/wjc9011/COMSOL_Multiphysics_MCP",
+  "capture_date": "2026-09-05",
+  "source_kind": "installed source snapshot; no git metadata available; local modifications may exist",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "CITATION.cff",
+      "sha256": "fab761d76c2efd8136f54e8c9481e35b74d9581a50abef68cad4911e80be5b40",
+      "bytes": 1070
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "06dcddbb6908a0c6dd4a9e8ec822eea41d5a460a53089fecccc8a68049e99241",
+      "bytes": 1056
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "39f21700940d3a47c87ffd3f03be41a6c8a4219f93a98f5f9306709db6f221de",
+      "bytes": 608
+    },
+    {
+      "path": "README.md",
+      "sha256": "8f50c800598fb218a9b344b887bcd6e8e76aa6808e2a0c346e0df91cf0aac91e",
+      "bytes": 15994
+    },
+    {
+      "path": "README_CN.md",
+      "sha256": "bca3999be9d1ebc78fa0e972c101434d618d51cc8c020b46f62ed50548d99939",
+      "bytes": 13884
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "4083bcc6665bd664708241eb445505ac2a4a4ba92511338136bc4999c8030f97",
+      "bytes": 99
+    },
+    {
+      "path": "src/async_handler/__init__.py",
+      "sha256": "7f5340006f31a8669644646d040adb3e17578ba31678726304dc66ae22443b63",
+      "bytes": 214
+    },
+    {
+      "path": "src/async_handler/solver.py",
+      "sha256": "0bc47e78c15e277a02f74092fedcb91d7f0318d8c037322bc7345dc2eacaf362",
+      "bytes": 7007
+    },
+    {
+      "path": "src/knowledge/__init__.py",
+      "sha256": "39af59e2dd17420a1c5126883139877f349f97e27214bc9f9788daf385a9936d",
+      "bytes": 460
+    },
+    {
+      "path": "src/knowledge/embedded.py",
+      "sha256": "1ed14b593f7e2901792959e004fb66dca35ce74116911971f299af65b3db62a9",
+      "bytes": 22351
+    },
+    {
+      "path": "src/knowledge/pdf_processor.py",
+      "sha256": "267311ab9514a69db031a6be829c56b86be86430968753e1adcceb573786a097",
+      "bytes": 8414
+    },
+    {
+      "path": "src/knowledge/prompts/mph_api.md",
+      "sha256": "642ea1d8b2d8a20980d8d2d218b2cdb51a40ce0202cac38620659ecc7e01d536",
+      "bytes": 4345
+    },
+    {
+      "path": "src/knowledge/prompts/physics_guide.md",
+      "sha256": "f14b07a4be1b8e628edfc72b64c64af8d591945f3d7b8a7b17db4a169cd79520",
+      "bytes": 12023
+    },
+    {
+      "path": "src/knowledge/prompts/workflow.md",
+      "sha256": "93817b92ad47188bd5f572b9577ab8215206951faf486b042035b916760d32a3",
+      "bytes": 15522
+    },
+    {
+      "path": "src/knowledge/retriever.py",
+      "sha256": "877eab8b13a557874a8f46d1502db6797ff30f5a0ef395884a5d71a8560dcbd2",
+      "bytes": 10108
+    },
+    {
+      "path": "src/resources/__init__.py",
+      "sha256": "2720e244b0ff3964c89f0ec73fa971b1ea46f7d496e79129ef77f2939d2f4a1a",
+      "bytes": 134
+    },
+    {
+      "path": "src/resources/model_resources.py",
+      "sha256": "6f1f2f06d2d45812a111121f71a0e9aecb48d62de34d37eecf834f8c480aa629",
+      "bytes": 6318
+    },
+    {
+      "path": "src/server.py",
+      "sha256": "45c8bf1b984f0a9e4cb911c456664a03f4374c608fce25f9154e4c2687818310",
+      "bytes": 1492
+    },
+    {
+      "path": "src/tools/__init__.py",
+      "sha256": "91b86447ed37012c6497d1faf34fe32f540566e8d779546cae9f3412696be86c",
+      "bytes": 636
+    },
+    {
+      "path": "src/tools/geometry.py",
+      "sha256": "f15af783f00117204ffca7e532912dfb8de4e862549e8b23cba4573a8f6a915c",
+      "bytes": 31962
+    },
+    {
+      "path": "src/tools/mesh.py",
+      "sha256": "248b68c62b737ee36930c52a20c473994de348ad877d4369b9ec01580af5ddf8",
+      "bytes": 10385
+    },
+    {
+      "path": "src/tools/model.py",
+      "sha256": "ee79c2bd83c9b0198826a2c2a2e98680a12c9341ddba199d9ae06ea9981b6077",
+      "bytes": 15471
+    },
+    {
+      "path": "src/tools/parameters.py",
+      "sha256": "60b39e07867b2f9b813094249f7b93ae15ba374838c4c22e824066b79ae6dab9",
+      "bytes": 8014
+    },
+    {
+      "path": "src/tools/physics.py",
+      "sha256": "59412485ec39fe82b08b0e90e5a68104b852e2a0a8a7817a771404fb06aa96b0",
+      "bytes": 67063
+    },
+    {
+      "path": "src/tools/results.py",
+      "sha256": "18198f595a392696ca63b311527c39c76e6bfc1880431f313f72390805a43a8a",
+      "bytes": 10730
+    },
+    {
+      "path": "src/tools/session.py",
+      "sha256": "b603482f33bb9b52e8616fd066fb564cb186ce0818d3598f78a495d6d4175802",
+      "bytes": 8630
+    },
+    {
+      "path": "src/tools/study.py",
+      "sha256": "c813b2f282c312db4ef43626578272589a905f4f282515aca2052215284078f3",
+      "bytes": 10635
+    },
+    {
+      "path": "src/utils/__init__.py",
+      "sha256": "043a4e2b59b22f4d47a046a9ebe7e945bea85b4fbc3d4a908ad6b95b30027361",
+      "bytes": 169
+    },
+    {
+      "path": "src/utils/versioning.py",
+      "sha256": "9d69e41d98d9778a0131cb5f05650ffbb74a3e0ee90da85d56284e8a62a10126",
+      "bytes": 3813
+    }
+  ]
+}

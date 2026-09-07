@@ -1,0 +1,1512 @@
+{
+  "schema_version": 1,
+  "reference_comsol_version": "6.2",
+  "notes": [
+    "本目录的路径以本机 COMSOL 6.2 应用库核验。其他版本可能移动或改名，应按案例文件名和官方教程进行精确匹配。",
+    "案例为安装于用户机器上的 COMSOL Application Library 模型；本仓库不再分发任何官方 MPH、PDF、几何输入或图片。",
+    "覆盖主要物理场和多物理场入门方向，不声称穷尽所有接口、版本、模块组合及建模情况。",
+    "每个案例的模块字段表示所属产品族，不是完整授权清单。文件存在不等于许可证可用。",
+    "catalogued_not_run 意味着路径/教程元数据核验；需要在目标机器实际加载求解并验证，才能标记运行成功。",
+    "官方模型可能引用同目录资源。保留原库中的依赖；从原库加载，另存至独立输出，不覆盖应用库源文件。"
+  ],
+  "cases": [
+    {
+      "id": "heat_sink_3d",
+      "category": "传热：原创完整工作流",
+      "title_zh": "三维铝翅片散热器：稳态与升温",
+      "source": "original",
+      "modules": [
+        "COMSOL Multiphysics / Heat Transfer interface"
+      ],
+      "module_requirement_note": "通过实际创建 HeatTransfer 接口检查当前许可证，不从产品族文字推断授权。",
+      "study": null,
+      "study_hint": "脚本完成稳态3级网格与0–3600 s瞬态，不需手动选择研究。",
+      "dimensions": [
+        "3D"
+      ],
+      "learning_goals": [
+        "命令建立几何与具名选择",
+        "材料、热流、对流边界",
+        "稳态与瞬态",
+        "网格细化与能量平衡",
+        "前台结果与导出"
+      ],
+      "validation_suggestions": [
+        "检查10 W输入输出平衡",
+        "核对面积体积",
+        "网格和瞬态稳态一致性"
+      ],
+      "status": "validated_comsol_6_2",
+      "validation_status": "原创计算流程在COMSOL6.2实跑，7项数值检查通过；保存名称修复另作真实COMSOL回归，详见examples/validation。",
+      "documentation_url": null,
+      "estimated_runtime_note": "分钟级，随硬件与COMSOL版本变化；可能生成数百MB运行结果。"
+    },
+    {
+      "id": "simple_resistor",
+      "category": "电流",
+      "title_zh": "三维电阻器",
+      "source": "application_library",
+      "relative_path": "ACDC_Module/Introductory_Electric_Currents/simple_resistor.mph",
+      "modules": [
+        "AC/DC Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "电势边界与电流守恒",
+        "端子电流和等效电阻"
+      ],
+      "validation_suggestions": [
+        "检查端子输入与输出电流一致",
+        "将数值电阻与几何和材料参数的解析估算比较"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.acdc.simple_resistor/simple_resistor.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.acdc.simple_resistor/simple_resistor.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "capacitor_dc",
+      "category": "AC/DC：静电",
+      "title_zh": "三维直流电容器",
+      "source": "application_library",
+      "relative_path": "ACDC_Module/Introductory_Electrostatics/capacitor_dc.mph",
+      "modules": [
+        "AC/DC Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "电介质、静电场和电容提取"
+      ],
+      "validation_suggestions": [
+        "比较电荷法与电场能量法电容",
+        "检查空气域大小和网格敏感性"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.acdc.capacitor_dc/capacitor_dc.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.acdc.capacitor_dc/capacitor_dc.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "magnetic_wire",
+      "category": "AC/DC：磁场",
+      "title_zh": "无限长同轴导体磁场",
+      "source": "application_library",
+      "relative_path": "ACDC_Module/Introductory_Magnetostatics/magnetic_field_infinite_conductor.mph",
+      "modules": [
+        "AC/DC Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "电流激励、同轴几何与磁通密度"
+      ],
+      "validation_suggestions": [
+        "分区域使用安培环路定律对照解析磁场",
+        "检查内外导体总电流和网格误差"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.acdc.magnetic_field_infinite_conductor/magnetic_field_infinite_conductor.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.acdc.magnetic_field_infinite_conductor/magnetic_field_infinite_conductor.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "eddy_currents",
+      "category": "AC/DC：涡流",
+      "title_zh": "涡流与集肤效应",
+      "source": "application_library",
+      "relative_path": "ACDC_Module/Introductory_Electromagnetics/eddy_currents.mph",
+      "modules": [
+        "AC/DC Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Frequency Domain ",
+      "learning_goals": [
+        "频域磁场、感应电流与导体损耗"
+      ],
+      "validation_suggestions": [
+        "以集肤深度控制导体网格",
+        "检查频率变化与焦耳损耗趋势"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.acdc.eddy_currents/eddy_currents.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.acdc.eddy_currents/eddy_currents.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "acoustic_resonator",
+      "category": "声学",
+      "title_zh": "亥姆霍兹共振器",
+      "source": "application_library",
+      "relative_path": "Acoustics_Module/Tutorials,_Pressure_Acoustics/helmholtz_resonator_solvers.mph",
+      "modules": [
+        "Acoustics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Frequency Domain ；Preset Studies for Selected Physics Interfaces>Adaptive Frequency Sweep ；Preset Studies for Selected Physics Interfaces>Frequency Domain, Modal ",
+      "learning_goals": [
+        "声压频率响应",
+        "不同声学求解策略"
+      ],
+      "validation_suggestions": [
+        "对照低频集中参数共振频率",
+        "峰值附近加密频率与网格"
+      ],
+      "dimensions": [
+        "2D Axisymmetric"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.aco.helmholtz_resonator_solvers/helmholtz_resonator_solvers.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.aco.helmholtz_resonator_solvers/helmholtz_resonator_solvers.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "species_diffusion",
+      "category": "化学物质传递",
+      "title_zh": "多孔微结构有效扩散率",
+      "source": "application_library",
+      "relative_path": "COMSOL_Multiphysics/Diffusion/effective_diffusivity.mph",
+      "modules": [
+        "COMSOL Multiphysics"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "浓度边界、扩散通量与均匀化"
+      ],
+      "validation_suggestions": [
+        "核对入口与出口总通量",
+        "比较自由扩散和有效扩散率"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mph.effective_diffusivity/effective_diffusivity.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mph.effective_diffusivity/effective_diffusivity.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "reaction_kinetics",
+      "category": "化学物质传递：反应工程",
+      "title_zh": "Arrhenius 动力学参数估计",
+      "source": "application_library",
+      "relative_path": "Chemical_Reaction_Engineering_Module/Tutorials/activation_energy.mph",
+      "modules": [
+        "Chemical Reaction Engineering Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "温度依赖反应速率与参数估计"
+      ],
+      "validation_suggestions": [
+        "比较模型浓度与案例内实验数据",
+        "检查 Arrhenius 参数尺度和拟合残差"
+      ],
+      "dimensions": [
+        "0D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.chem.activation_energy/activation_energy.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.chem.activation_energy/activation_energy.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "cyclic_voltammetry",
+      "category": "电化学",
+      "title_zh": "一维循环伏安",
+      "source": "application_library",
+      "relative_path": "Electrochemistry_Module/Tutorials/cyclic_voltammetry_1d.mph",
+      "modules": [
+        "Electrochemistry Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Cyclic Voltammetry ",
+      "learning_goals": [
+        "电位扫描、电极反应与扩散层"
+      ],
+      "validation_suggestions": [
+        "比较正反扫描电流峰",
+        "加密电极附近网格和时间步"
+      ],
+      "dimensions": [
+        "1D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.echem.cyclic_voltammetry_1d/cyclic_voltammetry_1d.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.echem.cyclic_voltammetry_1d/cyclic_voltammetry_1d.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "flow_cylinder",
+      "category": "流体流动",
+      "title_zh": "圆柱绕流",
+      "source": "application_library",
+      "relative_path": "COMSOL_Multiphysics/Fluid_Dynamics/cylinder_flow.mph",
+      "modules": [
+        "COMSOL Multiphysics"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "层流边界、压降、尾涡和升阻力"
+      ],
+      "validation_suggestions": [
+        "检查流入流出质量守恒",
+        "与教程给出的阻力和脱涡量比较"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mph.cylinder_flow/cylinder_flow.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mph.cylinder_flow/cylinder_flow.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "heat_slab",
+      "category": "传热",
+      "title_zh": "平板瞬态导热",
+      "source": "application_library",
+      "relative_path": "Heat_Transfer_Module/Tutorials,_Conduction/heat_conduction_in_slab.mph",
+      "modules": [
+        "Heat Transfer Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "导热方程、初始温度与时间尺度"
+      ],
+      "validation_suggestions": [
+        "对照教程中的解析温度解",
+        "检查空间和时间收敛"
+      ],
+      "dimensions": [
+        "1D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.heat.heat_conduction_in_slab/heat_conduction_in_slab.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.heat.heat_conduction_in_slab/heat_conduction_in_slab.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "wave_fresnel",
+      "category": "光学：波动光学",
+      "title_zh": "菲涅耳反射与折射",
+      "source": "application_library",
+      "relative_path": "Wave_Optics_Module/Verification_Examples/fresnel_equations.mph",
+      "modules": [
+        "Wave Optics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Wavelength Domain ；Empty Study ",
+      "learning_goals": [
+        "平面波入射、偏振、反射率和透射率"
+      ],
+      "validation_suggestions": [
+        "对照菲涅耳公式",
+        "无损设置检查反射与透射功率之和"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.woptics.fresnel_equations/fresnel_equations.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.woptics.fresnel_equations/fresnel_equations.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "ray_retroreflector",
+      "category": "光学：射线光学",
+      "title_zh": "角锥回射器",
+      "source": "application_library",
+      "relative_path": "Ray_Optics_Module/Verification_Examples/corner_cube_retroreflector.mph",
+      "modules": [
+        "Ray Optics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Ray Tracing ",
+      "learning_goals": [
+        "几何光线、反射与方向变化"
+      ],
+      "validation_suggestions": [
+        "检查出射与入射方向反平行",
+        "改变入射位置检验几何行为"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.roptics.corner_cube_retroreflector/corner_cube_retroreflector.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.roptics.corner_cube_retroreflector/corner_cube_retroreflector.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "plasma_column",
+      "category": "等离子体",
+      "title_zh": "一维正柱放电",
+      "source": "application_library",
+      "relative_path": "Plasma_Module/Direct_Current_Discharges/positive_column_1d.mph",
+      "modules": [
+        "Plasma Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "带电粒子输运、电子能量和放电平衡"
+      ],
+      "validation_suggestions": [
+        "检查粒子密度非负",
+        "检查反应源项与壁面通量平衡和稳态收敛"
+      ],
+      "dimensions": [
+        "1D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.plasma.positive_column_1d/positive_column_1d.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.plasma.positive_column_1d/positive_column_1d.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "rf_cavity",
+      "category": "射频",
+      "title_zh": "电磁谐振腔",
+      "source": "application_library",
+      "relative_path": "RF_Module/Verification_Examples/cavity_resonators.mph",
+      "modules": [
+        "RF Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Eigenfrequency ；Empty Study ",
+      "learning_goals": [
+        "电磁本征频率、腔体模态和品质因数"
+      ],
+      "validation_suggestions": [
+        "将本征频率与教程解析值比较",
+        "识别简并和高阶模态"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.rf.cavity_resonators/cavity_resonators.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.rf.cavity_resonators/cavity_resonators.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "semiconductor_pn",
+      "category": "半导体",
+      "title_zh": "一维 PN 结",
+      "source": "application_library",
+      "relative_path": "Semiconductor_Module/Verification_Examples/pn_junction_1d.mph",
+      "modules": [
+        "Semiconductor Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "掺杂、载流子、势垒与结区"
+      ],
+      "validation_suggestions": [
+        "对照耗尽层近似",
+        "检查接触电流守恒和偏置连续性"
+      ],
+      "dimensions": [
+        "1D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.semicond.pn_junction_1d/pn_junction_1d.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.semicond.pn_junction_1d/pn_junction_1d.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "solid_cantilever",
+      "category": "结构力学",
+      "title_zh": "渐变截面悬臂梁",
+      "source": "application_library",
+      "relative_path": "COMSOL_Multiphysics/Structural_Mechanics/tapered_cantilever.mph",
+      "modules": [
+        "COMSOL Multiphysics"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "固定约束、边界载荷与位移应力"
+      ],
+      "validation_suggestions": [
+        "比较教程梁理论参考值",
+        "检查支反力平衡和位移网格收敛"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mph.tapered_cantilever/tapered_cantilever.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mph.tapered_cantilever/tapered_cantilever.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "math_point_source",
+      "category": "数学：PDE",
+      "title_zh": "点源的偏微分方程模型",
+      "source": "application_library",
+      "relative_path": "COMSOL_Multiphysics/Equation_Based/point_source.mph",
+      "modules": [
+        "COMSOL Multiphysics"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "系数/方程建模、点源与边界条件"
+      ],
+      "validation_suggestions": [
+        "对照教程解析或参考解",
+        "避免把点源奇异点最大值作为收敛指标"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mph.point_source/point_source.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mph.point_source/point_source.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "math_lorenz",
+      "category": "数学：ODE",
+      "title_zh": "Lorenz 吸引子",
+      "source": "application_library",
+      "relative_path": "COMSOL_Multiphysics/Equation_Based/lorenz_attractor.mph",
+      "modules": [
+        "COMSOL Multiphysics"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "常微分方程、初值敏感性与相图"
+      ],
+      "validation_suggestions": [
+        "缩小时间步比较短时轨迹",
+        "长期混沌轨迹不逐点要求重合"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "教程使用 3D 组件组织模型和相空间曲线；Lorenz 系统本身是三个随时间变化的 ODE，不是三维空间 PDE。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mph.lorenz_attractor/lorenz_attractor.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mph.lorenz_attractor/lorenz_attractor.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "joule_busbar",
+      "category": "多物理场：电热",
+      "title_zh": "母线焦耳热",
+      "source": "application_library",
+      "relative_path": "COMSOL_Multiphysics/Multiphysics/busbar.mph",
+      "modules": [
+        "COMSOL Multiphysics"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。",
+      "learning_goals": [
+        "电流产生体热源与温度场"
+      ],
+      "validation_suggestions": [
+        "比较端子电功率和体焦耳热积分",
+        "核查热量流出平衡"
+      ],
+      "dimensions": null,
+      "dimension_evidence": "not_verified",
+      "dimension_note": "运行时枚举模型组件/几何以确认维度。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mph.busbar/busbar.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mph.busbar/busbar.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "thermal_actuator",
+      "category": "多物理场：电热结构",
+      "title_zh": "热致动器",
+      "source": "application_library",
+      "relative_path": "Structural_Mechanics_Module/Thermal-Structure_Interaction/thermal_actuator_tem.mph",
+      "modules": [
+        "Structural Mechanics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "电阻发热、热膨胀与结构位移"
+      ],
+      "validation_suggestions": [
+        "检查电功率和热平衡",
+        "比较位移方向及低激励响应趋势"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.sme.thermal_actuator_tem/thermal_actuator_tem.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.sme.thermal_actuator_tem/thermal_actuator_tem.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "conjugate_heat_sink",
+      "category": "多物理场：流热",
+      "title_zh": "空气冷却散热器",
+      "source": "application_library",
+      "relative_path": "Heat_Transfer_Module/Tutorials,_Forced_and_Natural_Convection/heat_sink.mph",
+      "modules": [
+        "Heat Transfer Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "固体传热与流体带热",
+        "真实空气域"
+      ],
+      "validation_suggestions": [
+        "核查固体-流体界面热连续与质量守恒",
+        "检查热输入和出口焓流"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.heat.heat_sink/heat_sink.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.heat.heat_sink/heat_sink.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "fluid_structure",
+      "category": "多物理场：流固",
+      "title_zh": "柔性障碍物的流固耦合",
+      "source": "application_library",
+      "relative_path": "MEMS_Module/Fluid-Structure_Interaction/fluid_structure_interaction.mph",
+      "modules": [
+        "MEMS Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "流体压力与黏性载荷、弹性变形和 ALE 移动网格"
+      ],
+      "validation_suggestions": [
+        "检查流固界面速度与力的连续",
+        "监测移动网格质量、质量守恒与时间步收敛"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.mems.fluid_structure_interaction/fluid_structure_interaction.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mems.fluid_structure_interaction/fluid_structure_interaction.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "piezoacoustic",
+      "category": "多物理场：压电声学",
+      "title_zh": "压电声学换能器",
+      "source": "application_library",
+      "relative_path": "Acoustics_Module/Piezoelectric_Devices/piezoacoustic_transducer.mph",
+      "modules": [
+        "Acoustics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Frequency Domain ",
+      "learning_goals": [
+        "电场-结构-声场耦合与辐射"
+      ],
+      "validation_suggestions": [
+        "检查电声耦合方向和共振",
+        "比较声辐射功率与输入功率和损耗"
+      ],
+      "dimensions": [
+        "2D Axisymmetric"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.aco.piezoacoustic_transducer/piezoacoustic_transducer.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.aco.piezoacoustic_transducer/piezoacoustic_transducer.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "electrostatic_cantilever",
+      "category": "多物理场：机电/MEMS",
+      "title_zh": "静电驱动悬臂梁",
+      "source": "application_library",
+      "relative_path": "MEMS_Module/Actuators/electrostatically_actuated_cantilever.mph",
+      "modules": [
+        "MEMS Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "静电力、弹性变形和变形几何"
+      ],
+      "validation_suggestions": [
+        "低电压下比较力随电压平方变化",
+        "逐步增压检查拉入与非线性收敛"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.mems.electrostatically_actuated_cantilever/electrostatically_actuated_cantilever.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mems.electrostatically_actuated_cantilever/electrostatically_actuated_cantilever.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "battery_1d",
+      "category": "电化学：电池",
+      "title_zh": "一维锂离子电池",
+      "source": "application_library",
+      "relative_path": "Battery_Design_Module/Batteries,_Lithium-Ion/li_battery_1d.mph",
+      "modules": [
+        "Battery Design Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Time Dependent with Initialization ",
+      "learning_goals": [
+        "多孔电极、颗粒扩散与放电电压"
+      ],
+      "validation_suggestions": [
+        "检查锂守恒、端子电流与荷电状态",
+        "不得越过模型定义的电压截止条件"
+      ],
+      "dimensions": [
+        "1D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.battery.li_battery_1d/li_battery_1d.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.battery.li_battery_1d/li_battery_1d.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "fuel_cell_mea",
+      "category": "电化学：燃料电池",
+      "title_zh": "一维 PEM 膜电极组件",
+      "source": "application_library",
+      "relative_path": "Fuel_Cell_and_Electrolyzer_Module/Fuel_Cells/pem_mea_1d.mph",
+      "modules": [
+        "Fuel Cell & Electrolyzer Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Hydrogen Fuel Cell>Stationary with Initialization ",
+      "learning_goals": [
+        "膜电极内电流和反应传质"
+      ],
+      "validation_suggestions": [
+        "检查电流连续和反应消耗的法拉第计量",
+        "核对极化曲线趋势"
+      ],
+      "dimensions": [
+        "1D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.fce.pem_mea_1d/pem_mea_1d.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.fce.pem_mea_1d/pem_mea_1d.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "corrosion_nail",
+      "category": "电化学：腐蚀",
+      "title_zh": "镀锌钉的电偶腐蚀",
+      "source": "application_library",
+      "relative_path": "Corrosion_Module/Galvanic_Corrosion/galvanized_nail.mph",
+      "modules": [
+        "Corrosion Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "异种金属电偶、电极反应与电流分布"
+      ],
+      "validation_suggestions": [
+        "检查阳极与阴极总电流平衡",
+        "比较保护区与腐蚀区分布"
+      ],
+      "dimensions": null,
+      "dimension_evidence": "not_verified",
+      "dimension_note": "运行时枚举模型组件/几何以确认维度。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.corr.galvanized_nail/galvanized_nail.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.corr.galvanized_nail/galvanized_nail.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "electrodeposition_trench",
+      "category": "电化学：电沉积",
+      "title_zh": "铜沟槽电沉积",
+      "source": "application_library",
+      "relative_path": "Electrodeposition_Module/Tutorials/cu_trench_deposition.mph",
+      "modules": [
+        "Electrodeposition Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Time Dependent with Initialization ",
+      "learning_goals": [
+        "电流分布、电沉积速率和形状演化"
+      ],
+      "validation_suggestions": [
+        "用法拉第定律核对沉积质量",
+        "监测移动网格质量"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.edecm.cu_trench_deposition/cu_trench_deposition.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.edecm.cu_trench_deposition/cu_trench_deposition.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "microfluidic_separator",
+      "category": "流体流动：微流控",
+      "title_zh": "受控扩散分离器",
+      "source": "application_library",
+      "relative_path": "Microfluidics_Module/Micromixers/controlled_diffusion_separator.mph",
+      "modules": [
+        "Microfluidics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "微通道流动与扩散分离"
+      ],
+      "validation_suggestions": [
+        "检查流量守恒和组分守恒",
+        "比较停留时间与扩散时间"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mfl.controlled_diffusion_separator/controlled_diffusion_separator.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mfl.controlled_diffusion_separator/controlled_diffusion_separator.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "mixer_power_law",
+      "category": "流体流动：搅拌",
+      "title_zh": "幂律流体搅拌",
+      "source": "application_library",
+      "relative_path": "Mixer_Module/Benchmarks/power_law_mixer.mph",
+      "modules": [
+        "Mixer Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Frozen Rotor ",
+      "learning_goals": [
+        "非牛顿黏度与旋转搅拌"
+      ],
+      "validation_suggestions": [
+        "核查扭矩、耗散和输入机械功",
+        "加密叶片附近网格"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.mixer.power_law_mixer/power_law_mixer.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mixer.power_law_mixer/power_law_mixer.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "porous_forchheimer",
+      "category": "流体流动：多孔介质",
+      "title_zh": "Forchheimer 多孔流",
+      "source": "application_library",
+      "relative_path": "Porous_Media_Flow_Module/Fluid_Flow/forchheimer_flow.mph",
+      "modules": [
+        "Porous Media Flow Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "多孔阻力与非线性压降"
+      ],
+      "validation_suggestions": [
+        "比较低速 Darcy 极限和高速惯性修正",
+        "检查流量守恒"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.porous.forchheimer_flow/forchheimer_flow.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.porous.forchheimer_flow/forchheimer_flow.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "subsurface_lens",
+      "category": "流体流动：地下水",
+      "title_zh": "低渗透透镜体中的两相流",
+      "source": "application_library",
+      "relative_path": "Subsurface_Flow_Module/Fluid_Flow/low_permeable_lens.mph",
+      "modules": [
+        "Subsurface Flow Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "渗透率分区、两相饱和度与界面不连续"
+      ],
+      "validation_suggestions": [
+        "检查各相体积守恒和饱和度范围",
+        "核查透镜界面条件"
+      ],
+      "dimensions": [
+        "2D Axisymmetric"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.ssf.low_permeable_lens/low_permeable_lens.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.ssf.low_permeable_lens/low_permeable_lens.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "pipe_tank",
+      "category": "流体流动：管流",
+      "title_zh": "储水罐排放管路",
+      "source": "application_library",
+      "relative_path": "Pipe_Flow_Module/Tutorials/discharging_tank.mph",
+      "modules": [
+        "Pipe Flow Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "液位压头、管路压降与初始排放流量"
+      ],
+      "validation_suggestions": [
+        "将管路压降与可用水头比较",
+        "核对弯头、阀门和摩擦损失"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.pipe.discharging_tank/discharging_tank.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.pipe.discharging_tank/discharging_tank.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "molecular_capillary",
+      "category": "流体流动：分子流",
+      "title_zh": "真空毛细管",
+      "source": "application_library",
+      "relative_path": "Molecular_Flow_Module/Benchmarks/vacuum_capillary.mph",
+      "modules": [
+        "Molecular Flow Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "稀薄气体、壁面作用与真空输运"
+      ],
+      "validation_suggestions": [
+        "与教程基准导流能力比较",
+        "检查分子通量平衡及离散收敛"
+      ],
+      "dimensions": [
+        "2D Axisymmetric"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.molec.vacuum_capillary/vacuum_capillary.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.molec.vacuum_capillary/vacuum_capillary.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "polymer_cylinder",
+      "category": "流体流动：聚合物流",
+      "title_zh": "黏弹性流体绕圆柱",
+      "source": "application_library",
+      "relative_path": "Polymer_Flow_Module/Verification_Examples/cylinder_flow_viscoelastic.mph",
+      "modules": [
+        "Polymer Flow Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "黏弹性本构与流动阻力"
+      ],
+      "validation_suggestions": [
+        "检查低弹性参数下的黏性极限",
+        "加密应力梯度区域"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.polymer.cylinder_flow_viscoelastic/cylinder_flow_viscoelastic.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.polymer.cylinder_flow_viscoelastic/cylinder_flow_viscoelastic.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "particle_brownian",
+      "category": "粒子追踪",
+      "title_zh": "布朗运动",
+      "source": "application_library",
+      "relative_path": "Particle_Tracing_Module/Verification_Examples/brownian_motion.mph",
+      "modules": [
+        "Particle Tracing Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "随机力与粒子统计"
+      ],
+      "validation_suggestions": [
+        "将均方位移与扩散规律比较",
+        "报告粒子数和随机统计误差"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.particle.brownian_motion/brownian_motion.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.particle.brownian_motion/brownian_motion.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "composite_laminate",
+      "category": "结构力学：复合材料",
+      "title_zh": "简支复合层合板",
+      "source": "application_library",
+      "relative_path": "Composite_Materials_Module/Verification_Examples/simply_supported_composite_laminate.mph",
+      "modules": [
+        "Composite Materials Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "铺层、各向异性与层合板位移应力"
+      ],
+      "validation_suggestions": [
+        "与教程层合板理论/基准值比较",
+        "检查铺层坐标和厚度方向"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.compmat.simply_supported_composite_laminate/simply_supported_composite_laminate.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.compmat.simply_supported_composite_laminate/simply_supported_composite_laminate.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "fatigue_cycles",
+      "category": "结构力学：疲劳",
+      "title_zh": "循环计数基准",
+      "source": "application_library",
+      "relative_path": "Fatigue_Module/Verification_Examples/cycle_counting_benchmark.mph",
+      "modules": [
+        "Fatigue Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ；Preset Studies for Selected Physics Interfaces>Fatigue ",
+      "learning_goals": [
+        "载荷历程、循环统计与疲劳输入"
+      ],
+      "validation_suggestions": [
+        "与已知序列的循环数量及幅值比较",
+        "说明计数规则"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.fatigue.cycle_counting_benchmark/cycle_counting_benchmark.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.fatigue.cycle_counting_benchmark/cycle_counting_benchmark.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "soil_compression",
+      "category": "结构力学：岩土",
+      "title_zh": "土体等向压缩",
+      "source": "application_library",
+      "relative_path": "Geomechanics_Module/Verification_Examples/isotropic_compression.mph",
+      "modules": [
+        "Geomechanics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。",
+      "learning_goals": [
+        "岩土本构、压缩与加载路径"
+      ],
+      "validation_suggestions": [
+        "核对模型定义的压缩曲线",
+        "检查单位、初始应力与收敛"
+      ],
+      "dimensions": [
+        "2D Axisymmetric"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.geomech.isotropic_compression/isotropic_compression.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.geomech.isotropic_compression/isotropic_compression.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "multibody_pendulum",
+      "category": "结构力学：多体动力学",
+      "title_zh": "双摆",
+      "source": "application_library",
+      "relative_path": "Multibody_Dynamics_Module/Tutorials/double_pendulum.mph",
+      "modules": [
+        "Multibody Dynamics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "关节约束、重力与刚体动力学"
+      ],
+      "validation_suggestions": [
+        "检查约束误差",
+        "在无耗散设置下核对机械能"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.mbd.double_pendulum/double_pendulum.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.mbd.double_pendulum/double_pendulum.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "nonlinear_stretch",
+      "category": "结构力学：非线性材料",
+      "title_zh": "矩形薄片拉伸与起皱",
+      "source": "application_library",
+      "relative_path": "Nonlinear_Structural_Materials_Module/Hyperelasticity/sheet_uniaxial_stretching.mph",
+      "modules": [
+        "Nonlinear Structural Materials Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ；Preset Studies for Selected Physics Interfaces>Linear Buckling ",
+      "learning_goals": [
+        "薄膜/壳建模、大变形与起皱"
+      ],
+      "validation_suggestions": [
+        "比较教程的两种建模策略",
+        "检查皱纹对网格和初始缺陷的敏感性"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.nsm.sheet_uniaxial_stretching/sheet_uniaxial_stretching.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.nsm.sheet_uniaxial_stretching/sheet_uniaxial_stretching.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "rotor_beam",
+      "category": "结构力学：转子动力学",
+      "title_zh": "简支梁转子",
+      "source": "application_library",
+      "relative_path": "Rotordynamics_Module/Tutorials/simply_supported_beam_rotor.mph",
+      "modules": [
+        "Rotordynamics Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Eigenfrequency ；Preset Studies for Selected Physics Interfaces>Time Dependent with FFT ",
+      "learning_goals": [
+        "转子固有频率与转速相关行为"
+      ],
+      "validation_suggestions": [
+        "与简支梁解析频率/教程基准比较",
+        "跟踪模态随转速变化"
+      ],
+      "dimensions": [
+        "3D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.rotor.simply_supported_beam_rotor/simply_supported_beam_rotor.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.rotor.simply_supported_beam_rotor/simply_supported_beam_rotor.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "metal_round_bar",
+      "category": "材料加工：相变",
+      "title_zh": "圆棒中的相变",
+      "source": "application_library",
+      "relative_path": "Metal_Processing_Module/Tutorial_Examples/phase_transformations_in_a_round_bar.mph",
+      "modules": [
+        "Metal Processing Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Time Dependent ",
+      "learning_goals": [
+        "热历程与相变动力学"
+      ],
+      "validation_suggestions": [
+        "检查各相分数非负且总和合理",
+        "核对热量和相变时间尺度"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.metproc.phase_transformations_in_a_round_bar/phase_transformations_in_a_round_bar.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.metproc.phase_transformations_in_a_round_bar/phase_transformations_in_a_round_bar.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "thermo_properties",
+      "category": "物性：液体和气体",
+      "title_zh": "相包络线",
+      "source": "application_library",
+      "relative_path": "Liquid_and_Gas_Properties_Module/Tutorials/phase_envelope.mph",
+      "modules": [
+        "Liquid & Gas Properties Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Stationary ；General Studies>Stationary ",
+      "learning_goals": [
+        "热力学物性包与汽液相平衡"
+      ],
+      "validation_suggestions": [
+        "核对组成归一化、单位和共沸点行为",
+        "与教程参考包络比较"
+      ],
+      "dimensions": null,
+      "dimension_evidence": "not_verified",
+      "dimension_note": "运行时枚举模型组件/几何以确认维度。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.lgp.phase_envelope/phase_envelope.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.lgp.phase_envelope/phase_envelope.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "optimization_knee",
+      "category": "数学：优化",
+      "title_zh": "L 形支架拓扑优化",
+      "source": "application_library",
+      "relative_path": "Optimization_Module/Topology_Optimization/loaded_knee.mph",
+      "modules": [
+        "Optimization Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：General Studies>Stationary ",
+      "learning_goals": [
+        "设计变量、重量目标与刚度约束"
+      ],
+      "validation_suggestions": [
+        "核对优化前后目标和约束",
+        "检查滤波尺度、网格依赖和最终可制造性"
+      ],
+      "dimensions": [
+        "2D"
+      ],
+      "dimension_evidence": "official_local_model_wizard",
+      "dimension_note": "记录官方教程向导的空间维度，不保证所有未知量均为空间分布场。",
+      "level": "进阶",
+      "documentation_relative_path": "com.comsol.help.models.opt.loaded_knee/loaded_knee.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.opt.loaded_knee/loaded_knee.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    },
+    {
+      "id": "uq_ishigami",
+      "category": "数学：不确定性量化",
+      "title_zh": "Ishigami 函数敏感性",
+      "source": "application_library",
+      "relative_path": "Uncertainty_Quantification_Module/Tutorials/ishigami_function_uncertainty_quantification.mph",
+      "modules": [
+        "Uncertainty Quantification Module"
+      ],
+      "module_requirement_note": "产品族由案例所在应用库目录确认；实际所需附加产品以模型加载时的许可证检查及官方教程为准。",
+      "study": null,
+      "study_hint": "先枚举模型研究及其依赖，按原教程顺序运行；不要凭名称猜研究标签。 向导文档出现：Preset Studies for Selected Physics Interfaces>Stationary ",
+      "learning_goals": [
+        "输入分布、代理模型与全局敏感性"
+      ],
+      "validation_suggestions": [
+        "与 Ishigami 标准函数的统计/敏感性参考比较",
+        "检查采样和代理误差"
+      ],
+      "dimensions": null,
+      "dimension_evidence": "not_verified",
+      "dimension_note": "运行时枚举模型组件/几何以确认维度。",
+      "level": "入门",
+      "documentation_relative_path": "com.comsol.help.models.uq.ishigami_function_uncertainty_quantification/ishigami_function_uncertainty_quantification.html",
+      "documentation_url": "https://doc.comsol.com/6.2/doc/com.comsol.help.models.uq.ishigami_function_uncertainty_quantification/ishigami_function_uncertainty_quantification.html",
+      "documentation_url_status": "derived_from_verified_local_help_path_not_http_verified",
+      "status": "catalogued_not_run",
+      "path_verified_version": "6.2",
+      "validation_status": "本目录只核验安装库文件存在和教程元数据；未重新求解，不代表算例结果已通过验证。"
+    }
+  ]
+}

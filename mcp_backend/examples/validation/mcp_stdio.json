@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "transport": "MCP stdio",
+  "tools": [
+    "initialize",
+    "comsol_start",
+    "model_create",
+    "comsol_model_code",
+    "model_save",
+    "comsol_disconnect",
+    "comsol_connect",
+    "model_inspect"
+  ],
+  "field_result": {
+    "T_average_K": 298.1499999999947,
+    "heat_flux_W_m2": 999.9999999999856,
+    "analytic_T_K": 298.15,
+    "analytic_flux_W_m2": 1000,
+    "checks_passed": true
+  },
+  "saved_model_name_preserved": true,
+  "reconnected_temperature_K": 298.1499999999947
+}
