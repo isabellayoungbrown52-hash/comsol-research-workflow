@@ -42,6 +42,22 @@ pwsh -File scripts/java-mode.ps1 -Stage Run -JavaSource "<模型.java>" -ComsolR
 5. 得到目标 MPH、CSV 或图件后解释结果；
 6. 只有正式交付才增加完整 manifest 和晋级 QA。
 
+## 最终 MPH：在 COMSOL 内所见即所得
+
+Java 模式的主交付不是一组散落的 PNG/CSV，而是打开后即可查看和继续后处理的 `.mph`。Java 入口应先创建或更新与结论对应的 dataset、plot group、具体绘图层、derived values 和 tables，再执行最终 `model.save(...)`。参数及单位、几何、选择集、材料、物理场、网格、Study、求解器配置和当前 solution 也应保存在模型树中。
+
+推荐顺序：
+
+```text
+Build/Load → Configure → Mesh → Study/Solve → Build Results → Export → Final Save
+```
+
+- 外部绘图可以改善论文排版，但不能成为结果树的唯一载体。
+- 若补做 postprocess-only，应在补建结果节点和导出后把模型另存或再次保存。
+- 每个独立工况使用明确的 MPH 文件名和 model label，避免只有目录名能说明身份。
+- 常规交付检查最终文件非空，并确认当前 solution、dataset 与主要结果节点存在；正式结果再只读重载最终 MPH 核对一次。
+- 外部 CAD、插值表、材料数据或用户函数不能内嵌时，应随模型打包并使用稳定相对路径，同时列出依赖。
+
 ## 关键检查
 
 - 不用 `exit_code=0` 单独判定成功。
@@ -54,4 +70,4 @@ pwsh -File scripts/java-mode.ps1 -Stage Run -JavaSource "<模型.java>" -ComsolR
 
 ## Postprocess-only
 
-若 MPH 已保存且解身份可信，导出失败时优先写独立后处理入口：只加载目标 MPH、核对哈希和解/数据集身份、补建结果节点并导出。不要重新运行 Study，除非已有解损坏或缺少目标变量。
+若 MPH 已保存且解身份可信，导出失败时优先写独立后处理入口：只加载目标 MPH、核对解/数据集身份、补建结果节点并导出，然后再次保存包含新结果树的 MPH。不要重新运行 Study，除非已有解损坏或缺少目标变量；哈希核对只在正式身份管理需要时启用。

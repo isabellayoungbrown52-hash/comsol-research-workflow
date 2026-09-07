@@ -1,6 +1,6 @@
 [project]
 name = "comsol-research-workflow-mcp"
-version = "1.0.0"
+version = "1.0.1"
 description = "Optional local MCP backend for the COMSOL Research Workflow skill."
 authors = [{name = "COMSOL Research Workflow contributors"}]
 requires-python = ">=3.10"

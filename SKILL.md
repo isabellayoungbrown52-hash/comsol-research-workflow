@@ -1,6 +1,6 @@
 ---
 name: comsol-research-workflow
-description: Plan, build, run, debug, postprocess, and improve COMSOL research models through Java/Method batch or an available MCP session. Use for practical COMSOL modeling, solving, sweeps, result extraction, visualization, and physics-aware interpretation. Choose the lightest workflow that advances the task; use full manifests and evidence gates only for formal reproduction, promotion, or disputed results.
+description: "Operate COMSOL from natural language through Java/Method batch or an MCP session: build, solve, debug, postprocess, interpret, and deliver a complete directly viewable MPH with model and result trees. Use for practical COMSOL modeling, sweeps, result extraction, visualization, and physics-aware interpretation. Choose the lightest workflow that advances the task; reserve full evidence gates for formal reproduction, promotion, or disputed results."
 ---
 
 # COMSOL Research Workflow
@@ -22,6 +22,27 @@ description: Plan, build, run, debug, postprocess, and improve COMSOL research m
 - MCP 模式先调用 `comsol_doctor` 或等价连接检查；工具不存在时读取 [references/mcp-interactive.md](references/mcp-interactive.md)，完成一次性安装或配置后再继续。
 - 两种模式都不可用时，准确说明缺少的软件、许可或连接，不编造已经操作 COMSOL。
 
+## 所见即所得 MPH 交付合同
+
+只要任务实际创建、修改或求解 COMSOL 模型，两种模式默认都要交付一个可直接用 COMSOL 打开的最终 `.mph`。外部 CSV、图片、日志和 Java 源码是补充产物，不能代替最终模型。只有用户明确要求纯诊断、临时数值检查、只导出数据或不保存文件时，才可省略 MPH。
+
+最终 MPH 应在模型树中保留本任务实际使用的完整对象：
+
+- 带单位和说明的参数、变量与函数；
+- 几何、命名选择和组件耦合；
+- 材料及其实际采用的物性；
+- 物理接口、域/边界条件、源项与多物理场耦合；
+- 网格、Study、求解器配置和当前有效 solution；
+- 与交付结论对应的 dataset、plot group、曲线/表面/切片/箭头等图层、derived values 和 tables；
+- 能区分模型与工况的文件名、模型 label、节点 label 和必要说明。
+
+结果节点必须在 COMSOL 模型内部建立，不能只在外部脚本中画图。完成结果树后再做最终保存；后处理节点发生变化时再次保存，避免交付的 MPH 落后于导出的图或数据。
+
+- **Java 模式**：Java 源码负责创建结果节点，并把 `model.save(...)` 或等价保存放在最终阶段；每个独立工况输出到明确路径。
+- **MCP 模式**：在当前 live model 内完成结果树，随后调用保存工具生成独立 MPH；交付时报告实际模型名和绝对路径，不能只保留服务器会话状态。
+
+常规任务至少确认 MPH 存在且非空，并在同一会话中检查关键模型节点、当前 solution/dataset 和结果树。正式复现或论文主结果应只读重载已保存 MPH，再核对关键节点、工况和解身份。若模型依赖外部 CAD、插值表、材料库或用户函数，应一并打包可分发文件并改用稳定相对路径；未能内嵌的依赖必须明确列出，不能把它描述成完全自包含模型。
+
 ## 默认工作方式
 
 使用最轻量、足以解决当前问题的流程：
@@ -31,7 +52,7 @@ description: Plan, build, run, debug, postprocess, and improve COMSOL research m
 3. 选择 Java/Method、MCP、已有 MPH 后处理或混合通道；
 4. 建模、修改、运行或提取结果；
 5. 查看真实输出，修复阻碍结论的问题并继续迭代；
-6. 交付模型、数据、图件或判断，并简要说明适用边界。
+6. 交付可直接查看的最终 MPH，并按任务需要附数据、图件或判断，简要说明适用边界。
 
 普通参数修改、绘图、结果提取和故障排查不需要先制作 manifest、计算哈希或走完整晋级流程。不要因为低风险的格式问题、命名差异或缺少非必要元数据而停止推进。
 
@@ -52,7 +73,7 @@ description: Plan, build, run, debug, postprocess, and improve COMSOL research m
 
 - 使用隔离运行目录和稳定入口；
 - 固定关键参数、选择集、Study、时间窗和扫描点；
-- 保存可继续后处理的 MPH、运行日志和原始导出；
+- 保存包含当前解和结果树、可继续后处理的 MPH，以及运行日志和原始导出；
 - 让模型、案例和结果身份能够对应。
 
 正式批处理细节见 [references/java-batch.md](references/java-batch.md)。只有需要机器化交接时才使用 [references/run-manifest.md](references/run-manifest.md)。

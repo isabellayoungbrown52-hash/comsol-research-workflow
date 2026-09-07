@@ -16,6 +16,7 @@ COMSOL agents often fail in one of two ways: they issue API commands without und
 - inspect and modify existing MPH, Java/Method, or MCP work;
 - diagnose geometry, physics, selections, studies, solvers, and expressions;
 - run tests and sweeps, export data, and produce scientific figures;
+- deliver a directly viewable MPH with the full model tree, current solution, and result tree;
 - scale validation to the consequence of the result.
 
 The default loop is:
@@ -34,6 +35,14 @@ Full evidence gates are reserved for formal reproduction, promotion, disputed re
 | MCP | the agent calls the bundled optional local backend for model, geometry, physics, mesh, study, and results tools | exploration, diagnosis, model trees, live iteration |
 
 The skill asks once when the first real COMSOL operation begins. After selection it uses the chosen backend instead of returning generic instructions. Users can switch modes later in natural language.
+
+## Two modes, one complete MPH
+
+Java and MCP are two ways to operate COMSOL, not two different delivery standards. Whenever a task creates, modifies, or solves a model, the default deliverable is a directly openable `.mph`, not merely source code, a live session, CSV files, or images.
+
+The saved model retains the task's parameters and units, geometry, named selections, materials, physics and boundary conditions, mesh, study/solver configuration, current solution, datasets, plot groups and plot features, derived values, and tables. The final save happens after the result tree is built; postprocessing changes trigger another save. Formal results are also verified by reopening the saved MPH read-only.
+
+When external CAD, interpolation data, or user functions cannot be embedded, the skill packages them beside the MPH, uses stable relative paths where possible, and declares the dependencies instead of claiming the file is self-contained.
 
 ## Quick start
 
@@ -87,6 +96,6 @@ Routine tasks stay fast; formal results can still be made reproducible when that
 
 ## Status
 
-`v1.0.0`: dual Java/MCP backends, natural-language operation, and risk-proportional scientific workflow.
+`v1.0.1`: dual Java/MCP backends, natural-language operation, directly viewable MPH delivery, and a risk-proportional scientific workflow.
 
 COMSOL Multiphysics is commercial software and a trademark of COMSOL AB. This independent project is not affiliated with or endorsed by COMSOL AB.

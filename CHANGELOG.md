@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.0.1 — 2026-09-07
+
+- Made a complete, directly viewable MPH the shared default deliverable for both Java and MCP modes.
+- Required parameters, materials, physics, mesh, study/solver, current solution, datasets, plots, derived values, and tables to remain visible in the saved COMSOL tree.
+- Required the final save to occur after result-tree construction and after later postprocessing changes.
+- Added proportionate saved-model verification: same-session node checks for routine work and read-only reload for formal results.
+- Clarified packaging and disclosure of external CAD, interpolation data, material data, and user-function dependencies.
+
 ## v1.0.0 — 2026-09-07
 
 - Added an explicit first-use Java/MCP mode selector and required the selected backend to perform real COMSOL operations rather than return a workflow guide.
