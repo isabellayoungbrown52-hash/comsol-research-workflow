@@ -1,7 +1,7 @@
 interface:
   display_name: "COMSOL Research Workflow"
-  short_description: "Natural-language COMSOL with complete viewable MPH delivery"
+  short_description: "Natural-language COMSOL via native progress or MCP GUI"
   icon_small: "./assets/icon-400.png"
   icon_large: "./assets/icon-800.png"
   brand_color: "#16B8F3"
-  default_prompt: "Use $comsol-research-workflow to operate COMSOL in natural language. Ask me once to choose Java mode or MCP mode, use the selected backend to advance the task, and save a complete directly viewable MPH with the model tree, current solution, and result tree."
+  default_prompt: "Use $comsol-research-workflow to operate COMSOL in natural language. Ask me once to choose Java mode with COMSOL's native progress window or MCP mode with COMSOL Desktop visualization, use the selected backend to advance the task, and save a complete directly viewable MPH with the model tree, current solution, and result tree."

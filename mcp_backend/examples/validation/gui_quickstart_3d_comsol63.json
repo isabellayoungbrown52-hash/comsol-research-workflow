@@ -1,0 +1,26 @@
+{
+  "case_id": "gui_quickstart_3d",
+  "validation_date": "2026-09-09",
+  "transport": "MCP stdio",
+  "comsol_version": "6.3",
+  "python_version": "3.12.14",
+  "mph_version": "1.4.0",
+  "mcp_version": "1.30.0",
+  "model": {
+    "dimension": "3D",
+    "size": "10[mm] cube",
+    "physics": "HeatTransfer",
+    "boundary_temperatures_degC": [20.0, 30.0],
+    "study": "Stationary"
+  },
+  "result": {
+    "mean_temperature_degC": 25.000000000000057,
+    "analytic_mean_temperature_degC": 25.0,
+    "check_passed": true,
+    "results_tree": ["pgTemp/surf1", "Tmean", "tblSummary", "imgTemp"],
+    "png_exported": true,
+    "solved_mph_saved": true,
+    "mph_bytes": 6377517,
+    "read_only_reload_verified": true
+  }
+}

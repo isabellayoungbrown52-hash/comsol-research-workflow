@@ -1,6 +1,17 @@
 # 发布验证记录
 
-验证日期：2026-09-05。COMSOL 6.2.0.290，Python 3.12，MPh 1.4.0，MCP Python SDK 1.29.1，Windows。
+本页包含两次彼此独立的真实运行记录，日期和版本是结果身份，不是仓库发布日期：
+
+- 快速 GUI 案例：2026-09-09，COMSOL 6.3，Python 3.12.14，MPh 1.4.0，MCP Python SDK 1.30.0，Windows；
+- 三维散热器完整案例：2026-09-05，COMSOL 6.2.0.290，Python 3.12，MPh 1.4.0，MCP Python SDK 1.29.1，Windows。
+
+## COMSOL 6.3 MCP 快速 GUI 实测
+
+通过真实 MCP stdio 调用 `gui_quickstart_3d`，从空模型创建 10 mm 三维立方体、常物性材料、20/30 °C 两个温度边界、网格和稳态 Study。求解后建立 `pgTemp/surf1`、`Tmean`、`tblSummary` 与 `imgTemp` 结果节点，保存带解 MPH 并导出 PNG。域平均温度为 25.0000 °C，解析值为 25 °C，检查通过。
+
+![COMSOL 6.3 MCP 快速 GUI 实测](gui_quickstart_3d_comsol63.png)
+
+公开验证摘要见 [gui_quickstart_3d_comsol63.json](gui_quickstart_3d_comsol63.json)。完整 MPH 由案例在用户本机运行时生成，不把运行缓存作为仓库源码分发。
 
 ## 原创三维散热器
 

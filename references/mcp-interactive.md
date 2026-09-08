@@ -18,6 +18,15 @@ pwsh -File scripts/install-mcp.ps1
 <安装目录>/.venv/Scripts/python.exe -m server.main doctor
 ```
 
+电脑安装多个版本时，在启动 MCP 后端前设置目标版本，例如：
+
+```powershell
+$env:COMSOL_VERSION = '6.3'
+$env:COMSOL_ROOT = '<该版本的 Multiphysics 目录>'
+```
+
+两个变量必须指向同一安装；切换版本后重启 MCP 进程，不能在已初始化 JVM 的同一进程中热切换。
+
 安装器会输出当前电脑的准确连接器 JSON。推荐为桌面 Agent 配置 stdio，其结构如下：
 
 ```json
@@ -46,6 +55,14 @@ pwsh -File <安装目录>/scripts/start-mcp.ps1 -Transport streamable-http -Port
 6. 查询真实任务状态，完成后提取数值、生成结果节点、导出数据并保存 MPH。
 7. 直接给出结果和物理解读，不把工具调用清单当成主要交付。
 
+## 可视化 GUI 到底在哪里
+
+MCP 是 Agent 与 COMSOL 会话之间的控制通道，不是另造一个假的 COMSOL GUI。需要交互查看时，`comsol_open_desktop` 会打开连接到同一 server 的 COMSOL Desktop；计算完成后，用户按工具返回的模型名从服务器导入模型，即可在原生 Model Builder 中查看参数、几何、物理、网格、Study、solution 和 Results 树。Agent 同时可以通过结果导出工具生成 PNG，供对话或 GitHub 直接预览。
+
+`gui_quickstart_3d` 是秒级到分钟级的原创小型验证案例：它通过 MCP 创建三维导热模型、求解一次、建立 Surface/Derived Value/Table/Export 结果节点、保存 MPH 并导出下图。图像来自 2026-09-09 的 COMSOL 6.3 实跑，不是界面概念图。
+
+![MCP 模式 COMSOL 6.3 快速可视化实测](../mcp_backend/examples/validation/gui_quickstart_3d_comsol63.png)
+
 ## 最终 MPH：不要只停留在会话里
 
 MCP 的实时模型只是工作状态，不是最终文件。完成建模或求解后，应在 live model 中建立与结论对应的 dataset、plot group、具体绘图层、derived values 和 tables，再调用保存工具生成一个独立、可直接打开的 `.mph`。
@@ -66,6 +83,8 @@ MCP 的实时模型只是工作状态，不是最终文件。完成建模或求�
 - 长求解使用 job 并查询状态，不因客户端调用超时而重复提交。
 - 用户已有模型不得被全局清空；保存到新路径，除非用户明确要求覆盖。
 - 不同 COMSOL 版本的接口类型和属性可能变化，遇到 API 错误时检查目标版本而不是反复猜测。
+
+常见连接、JVM、会话、超时和保存问题见 [troubleshooting-efficiency.md](troubleshooting-efficiency.md)。跨版本规则见 [version-compatibility.md](version-compatibility.md)。
 
 ## 随包案例
 

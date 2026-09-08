@@ -12,6 +12,15 @@ Windows 通用入口为 `scripts/java-mode.ps1`。
 pwsh -File scripts/java-mode.ps1 -Stage Doctor -ComsolRoot "<COMSOL Multiphysics目录>"
 ```
 
+电脑安装多个版本时，显式选择目标版本：
+
+```powershell
+$env:COMSOL_VERSION = '6.3'
+pwsh -File scripts/java-mode.ps1 -Stage Doctor
+```
+
+也可以直接传入该版本的 `-ComsolRoot`。`COMSOL_ROOT` 优先于自动发现；编译和 batch 必须来自同一个安装根。
+
 只编译 Agent 生成或用户提供的 Java：
 
 ```powershell
@@ -24,7 +33,11 @@ pwsh -File scripts/java-mode.ps1 -Stage Compile -JavaSource "<模型.java>" -Com
 pwsh -File scripts/java-mode.ps1 -Stage Run -JavaSource "<模型.java>" -ComsolRoot "<COMSOL Multiphysics目录>" -ConfirmSolve
 ```
 
-入口为每次运行创建独立目录，保留源码副本与编译/批处理日志。进程退出为零后仍要读取模型代码约定的完成标记和目标产物；通用 runner 不可能替具体模型猜测成功条件。
+入口为每次运行创建独立目录，保留源码副本与编译/批处理日志。交互式 `Run` 会在隔离的 Java 副本中检查并注入 `ModelUtil.showProgress(true)`，调用 COMSOL 官方原生进度窗口；用户源文件不被修改。Java 源必须包含 `ModelUtil.initStandalone(true)`，否则 runner 会在启动前明确报错。CI 或没有桌面会话时才显式加 `-NoProgressWindow`，改由 batch 日志跟踪。官方窗口显示 100% 或进程退出为零仍不能替具体模型的完成标记和产物检查。
+
+![COMSOL 6.3 官方进度窗口示例](../assets/comsol-official-progress-window.png)
+
+该窗口由 COMSOL 自己呈现分层 solver、收敛性、参数和迭代状态。2026-09-09 已在 COMSOL 6.3 batch Java 探针中确认 `ModelUtil.showProgress(true)` 返回 `true`。不同操作系统或无图形会话是否能显示窗口，以目标版本返回值和运行环境为准。
 
 ## 入口设计
 
@@ -62,6 +75,8 @@ Build/Load → Configure → Mesh → Study/Solve → Build Results → Export �
 
 - 不用 `exit_code=0` 单独判定成功。
 - 对 Windows 日志先检测编码，不假定 UTF-8。
+- 只用目标 COMSOL 版本自带的 `comsolcompile` 管理 Java API classpath；不要猜测单个 JAR 便足够。
+- `comsolbatch -inputfile` 接收编译后的 `.class`，不是 `.java`。
 - 把异常堆栈送入被实际保存的日志流。
 - 参数扫描明确是 COMSOL 内部 parametric sweep 还是 runner 外层多案例；不要重复嵌套扫描。
 - 修改几何或选择集后重新生成网格并检查各物理特征的 selection。
@@ -71,3 +86,5 @@ Build/Load → Configure → Mesh → Study/Solve → Build Results → Export �
 ## Postprocess-only
 
 若 MPH 已保存且解身份可信，导出失败时优先写独立后处理入口：只加载目标 MPH、核对解/数据集身份、补建结果节点并导出，然后再次保存包含新结果树的 MPH。不要重新运行 Study，除非已有解损坏或缺少目标变量；哈希核对只在正式身份管理需要时启用。
+
+常见错误指纹和最低成本恢复路径见 [troubleshooting-efficiency.md](troubleshooting-efficiency.md)。跨版本编译和模型文件兼容规则见 [version-compatibility.md](version-compatibility.md)。

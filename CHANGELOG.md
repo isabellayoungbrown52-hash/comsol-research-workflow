@@ -1,5 +1,16 @@
 # Changelog
 
+## v1.1.0 — 2026-09-09
+
+- Added a symptom-driven troubleshooting and recovery guide derived from real batch, MCP, solver, export, disk, and plotting failures.
+- Added a recovery ladder that resumes from the lowest necessary stage and avoids repeating valid long solves.
+- Added explicit COMSOL version selection to the Java runner through `COMSOL_VERSION`/`-ComsolVersion`.
+- Documented MPH file direction, Java API and physics-node compatibility, version migration, and the current 6.2/6.3 validation scope.
+- Added the formal-figure identity rule: a script that can draw a figure is not automatically the script that produced the accepted figure.
+- Enabled COMSOL's native `ModelUtil.showProgress(true)` window by default for Java Run using only the isolated runtime source; headless jobs can explicitly use `-NoProgressWindow`.
+- Added and validated the original `gui_quickstart_3d` case through real MCP stdio on COMSOL 6.3, including a Results tree, PNG and solved MPH.
+- Clarified that MCP controls the live model while the visual GUI is COMSOL Desktop connected to the same server.
+
 ## v1.0.1 — 2026-09-07
 
 - Made a complete, directly viewable MPH the shared default deliverable for both Java and MCP modes.

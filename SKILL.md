@@ -18,9 +18,11 @@ description: "Operate COMSOL from natural language through Java/Method batch or 
 
 选定后必须立即使用真实工具推进任务，不要只返回操作指南：
 
-- Java 模式先运行 `scripts/java-mode.ps1 -Stage Doctor`；需要时读取 [references/java-batch.md](references/java-batch.md)。
+- Java 模式先运行 `scripts/java-mode.ps1 -Stage Doctor`；需要时读取 [references/java-batch.md](references/java-batch.md)。进入 `Run` 时必须启用 COMSOL 官方 `ModelUtil.showProgress(true)` 原生进度窗口；runner 只修改隔离运行副本，不改用户源文件。只有 CI 或明确无桌面的环境才使用 `-NoProgressWindow` 并依靠 batch 日志。
 - MCP 模式先调用 `comsol_doctor` 或等价连接检查；工具不存在时读取 [references/mcp-interactive.md](references/mcp-interactive.md)，完成一次性安装或配置后再继续。
 - 两种模式都不可用时，准确说明缺少的软件、许可或连接，不编造已经操作 COMSOL。
+
+若电脑安装了多个 COMSOL 版本、模型来自另一版本，或出现未知 feature/property、MPH 无法打开、客户端与服务器不匹配等现象，先读取 [references/version-compatibility.md](references/version-compatibility.md)，锁定本次使用的版本再修改或求解。
 
 ## 所见即所得 MPH 交付合同
 
@@ -55,6 +57,12 @@ description: "Operate COMSOL from natural language through Java/Method batch or 
 6. 交付可直接查看的最终 MPH，并按任务需要附数据、图件或判断，简要说明适用边界。
 
 普通参数修改、绘图、结果提取和故障排查不需要先制作 manifest、计算哈希或走完整晋级流程。不要因为低风险的格式问题、命名差异或缺少非必要元数据而停止推进。
+
+## 失败后高效恢复
+
+发生报错、超时、假成功、磁盘暴涨或图件无法复现时，读取 [references/troubleshooting-efficiency.md](references/troubleshooting-efficiency.md)。先判断失败发生在连接、编译、建模、求解、保存还是后处理层，只修复最早失败的一层；已经保存且身份可信的解优先继续后处理，不重复提交长计算。
+
+内部故障记录用于改善操作，不直接进入论文或用户交付。把具体项目路径、历史人名和一次性症状转化为可复用判断，避免把单次事故升级成每个任务都必须执行的繁重门禁。
 
 ## 三种工作强度
 

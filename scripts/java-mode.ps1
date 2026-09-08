@@ -4,30 +4,41 @@ param(
     [string]$Stage = 'Doctor',
     [string]$JavaSource,
     [string]$ComsolRoot = $env:COMSOL_ROOT,
+    [string]$ComsolVersion = $env:COMSOL_VERSION,
     [string]$RunRoot = '',
-    [switch]$ConfirmSolve
+    [switch]$ConfirmSolve,
+    [switch]$NoProgressWindow
 )
 
 $ErrorActionPreference = 'Stop'
 
 function Find-ComsolRoot {
-    param([string]$Configured)
+    param([string]$Configured, [string]$RequestedVersion)
     if ($Configured) {
         return [IO.Path]::GetFullPath($Configured)
     }
     $base = Join-Path ([Environment]::GetFolderPath('ProgramFiles')) 'COMSOL'
     if (Test-Path -LiteralPath $base -PathType Container) {
-        $found = Get-ChildItem -LiteralPath $base -Directory |
-            Sort-Object LastWriteTimeUtc -Descending |
-            ForEach-Object { Join-Path $_.FullName 'Multiphysics' } |
-            Where-Object { Test-Path -LiteralPath (Join-Path $_ 'bin\win64\comsolbatch.exe') -PathType Leaf } |
-            Select-Object -First 1
-        if ($found) { return $found }
+        $installations = @(Get-ChildItem -LiteralPath $base -Directory | ForEach-Object {
+            $candidate = Join-Path $_.FullName 'Multiphysics'
+            if (Test-Path -LiteralPath (Join-Path $candidate 'bin\win64\comsolbatch.exe') -PathType Leaf) {
+                [pscustomobject]@{ Root = $candidate; Folder = $_.Name; Digits = [regex]::Replace($_.Name, '\D', '') }
+            }
+        })
+        if ($RequestedVersion) {
+            $wanted = [regex]::Replace($RequestedVersion, '\D', '')
+            $matched = @($installations | Where-Object { $_.Digits -eq $wanted })
+            if ($matched.Count -eq 1) { return $matched[0].Root }
+            $available = ($installations.Folder -join ', ')
+            throw "COMSOL version $RequestedVersion was not found under $base. Available installations: $available"
+        }
+        $found = $installations | Sort-Object @{Expression={ if ($_.Digits) { [int]$_.Digits } else { 0 } }; Descending=$true} | Select-Object -First 1
+        if ($found) { return $found.Root }
     }
-    throw 'COMSOL was not found. Set COMSOL_ROOT to the Multiphysics installation directory.'
+    throw 'COMSOL was not found. Set COMSOL_ROOT to the Multiphysics installation directory or COMSOL_VERSION to an installed release.'
 }
 
-$root = Find-ComsolRoot $ComsolRoot
+$root = Find-ComsolRoot $ComsolRoot $ComsolVersion
 $compiler = Join-Path $root 'bin\win64\comsolcompile.exe'
 $batch = Join-Path $root 'bin\win64\comsolbatch.exe'
 foreach ($required in @($compiler, $batch)) {
@@ -50,6 +61,8 @@ if ($Stage -eq 'Doctor') {
     [ordered]@{
         status = 'PASS'
         comsol_root = $root
+        requested_version = $ComsolVersion
+        selected_installation = (Split-Path -Leaf (Split-Path -Parent $root))
         compiler = $compiler
         batch = $batch
         solve_called = $false
@@ -73,6 +86,23 @@ foreach ($directory in @($runtime, $logs, $prefs, $temp)) {
 
 $runtimeJava = Join-Path $runtime ([IO.Path]::GetFileName($source))
 Copy-Item -LiteralPath $source -Destination $runtimeJava
+$officialProgressRequested = $false
+if ($Stage -eq 'Run' -and -not $NoProgressWindow) {
+    $javaText = [IO.File]::ReadAllText($runtimeJava)
+    if ($javaText -notmatch 'ModelUtil\.showProgress\s*\(\s*true\s*\)') {
+        $init = [regex]::Match(
+            $javaText,
+            'ModelUtil\.initStandalone\s*\(\s*true(?:\s*,\s*"(?:swing|swt)")?\s*\)\s*;'
+        )
+        if (-not $init.Success) {
+            throw 'Official COMSOL progress requires ModelUtil.initStandalone(true) in JavaSource. Add it, or use -NoProgressWindow only for a headless run.'
+        }
+        $insertion = [Environment]::NewLine + '    ModelUtil.showProgress(true);'
+        $javaText = $javaText.Insert($init.Index + $init.Length, $insertion)
+        [IO.File]::WriteAllText($runtimeJava, $javaText, [Text.UTF8Encoding]::new($false))
+    }
+    $officialProgressRequested = $true
+}
 $compileOut = Join-Path $logs 'compile.stdout.log'
 $compileErr = Join-Path $logs 'compile.stderr.log'
 & $compiler $runtimeJava 1> $compileOut 2> $compileErr
@@ -116,6 +146,7 @@ $batchExit = $LASTEXITCODE
     batch_log = $batchLog
     stdout_log = $batchOut
     stderr_log = $batchErr
+    official_progress_requested = $officialProgressRequested
     solve_called = $true
     note = 'Inspect the COMSOL log and expected model/data outputs before claiming solve success.'
 } | ConvertTo-Json

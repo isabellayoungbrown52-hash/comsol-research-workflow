@@ -2,7 +2,7 @@
   "schema_version": 1,
   "reference_comsol_version": "6.2",
   "notes": [
-    "本目录的路径以本机 COMSOL 6.2 应用库核验。其他版本可能移动或改名，应按案例文件名和官方教程进行精确匹配。",
+    "官方应用库路径以本机 COMSOL 6.2 核验；原创案例的实际版本身份由各自 validation_status 单独登记。其他版本可能移动或改名，应按案例文件名和官方教程进行精确匹配。",
     "案例为安装于用户机器上的 COMSOL Application Library 模型；本仓库不再分发任何官方 MPH、PDF、几何输入或图片。",
     "覆盖主要物理场和多物理场入门方向，不声称穷尽所有接口、版本、模块组合及建模情况。",
     "每个案例的模块字段表示所属产品族，不是完整授权清单。文件存在不等于许可证可用。",
@@ -10,6 +10,35 @@
     "官方模型可能引用同目录资源。保留原库中的依赖；从原库加载，另存至独立输出，不覆盖应用库源文件。"
   ],
   "cases": [
+    {
+      "id": "gui_quickstart_3d",
+      "category": "传热：原创快速GUI验证",
+      "title_zh": "三维稳态导热立方体：MCP快速可视化",
+      "source": "original",
+      "modules": [
+        "COMSOL Multiphysics / Heat Transfer interface"
+      ],
+      "module_requirement_note": "通过实际创建 HeatTransfer 接口检查当前许可证，不从产品族文字推断授权。",
+      "study": null,
+      "study_hint": "脚本只执行一次小型稳态求解，随后创建结果树、导出PNG并保存MPH。",
+      "dimensions": [
+        "3D"
+      ],
+      "learning_goals": [
+        "自然语言触发MCP案例",
+        "查看模型树与结果树",
+        "快速导出三维场图",
+        "保存所见即所得MPH"
+      ],
+      "validation_suggestions": [
+        "平均温度应为25 °C",
+        "确认MPH内保留Surface图、Derived Value和Table"
+      ],
+      "status": "validated_comsol_6_3",
+      "validation_status": "2026-09-09通过真实MCP stdio在COMSOL 6.3实跑；平均温度25.0000 °C，结果树、PNG和带解MPH均已生成。",
+      "documentation_url": null,
+      "estimated_runtime_note": "通常为秒级到分钟级，随硬件、许可和COMSOL版本变化。"
+    },
     {
       "id": "heat_sink_3d",
       "category": "传热：原创完整工作流",

@@ -17,6 +17,8 @@
 - 诊断几何、物理场、选择集、Study、求解器和结果表达式；
 - 完成参数测试、正式扫描、数据导出和科学绘图；
 - 默认交付一个带完整模型树、当前解和结果树、打开即可查看的 MPH；
+- 按报错症状定位连接、编译、模型树、求解、保存或后处理问题，尽量从最近保存点恢复；
+- 支持显式选择 COMSOL 版本，并说明 MPH、Java API 和物理节点的跨版本边界；
 - 根据结果风险决定验证深度，而不是对每个小任务执行完整审计。
 
 默认工作循环是：
@@ -27,12 +29,22 @@ Understand → Model → Run → Inspect → Iterate → Deliver
 
 只有论文主结果、跨人复现、正式晋级或争议结果才升级到完整证据链。
 
+## 报错时不从头再来
+
+Skill 内置按症状组织的[报错与提效指南](references/troubleshooting-efficiency.md)。它优先判断错误发生在连接、编译、模型树、求解、保存还是后处理：已有可信 MPH 时继续后处理，客户端超时时先查原 job，图片导出失败不重算 Study，正式图重画不一致时也不静默覆盖。经验用于减少无效重跑，而不是给每个正常任务增加门禁。
+
+## COMSOL 6.3 与其他版本
+
+本项目主要在 COMSOL 6.3 上开发，Java runner 已完成 6.3 Doctor/Compile 级验证，快速 GUI 案例已完成 6.3 MCP 端到端实跑；较长的散热器案例记录来自 6.2。其他用户可以通过 `COMSOL_VERSION` 或 `COMSOL_ROOT` 选择自己的安装，但不同版本的 MPH 文件、Java API、物理节点、默认值和许可证模块可能不同。详情见[版本兼容指南](references/version-compatibility.md)。
+
+最重要的规则是：同一次任务使用同一版本的编译器、batch、JVM/server 和 API 文档；旧 MPH 第一次在新版本打开时先另存副本。新版本保存的 MPH 不能再由旧版本直接打开。
+
 ## 首次选择两种模式
 
 | 模式 | 如何真正调用 COMSOL | 最适合 |
 |---|---|---|
-| Java 模式 | Agent 生成或修改 Java API 源码，调用随包 runner、`comsolcompile` 和 `comsolbatch` | 正式扫描、长计算、稳定复现 |
-| MCP 模式 | Agent 调用随包可选 MCP 后端提供的模型、参数、几何、物理场、网格、Study 和结果工具 | 探索、诊断、模型树和即时可视化 |
+| Java 模式 | Agent 生成或修改 Java API 源码，调用随包 runner、`comsolcompile` 和 `comsolbatch`；交互式 Run 默认启用 COMSOL 官方进度窗口 | 正式扫描、长计算、稳定复现 |
+| MCP 模式 | Agent 调用随包可选 MCP 后端操作 live model，可连接同一 server 的 COMSOL Desktop 并导出预览图 | 探索、诊断、模型树和原生 GUI 可视化 |
 
 当用户第一次提出实际 COMSOL 操作时，Skill 会让用户选择一次模式。选定后立即调用对应后端推进任务，不反复询问，也不只返回教程。用户可随时用自然语言要求切换。
 
@@ -77,9 +89,19 @@ pwsh -File scripts/install-mcp.ps1
 
 详细配置见 [MCP 模式](references/mcp-interactive.md)。
 
+## 两种模式的可见反馈
+
+Java 模式进入求解时，runner 会在隔离的 Java 运行副本中启用官方 `ModelUtil.showProgress(true)`，显示 COMSOL 自己的分层求解器进度、收敛性、参数和迭代信息；用户原始 Java 不会被改写。CI/无桌面环境才使用 `-NoProgressWindow`，此时仍保留 batch 日志。
+
+![COMSOL 6.3 官方进度窗口示例](assets/comsol-official-progress-window.png)
+
+MCP 模式的 GUI 是连接同一 COMSOL server 的原生 Desktop，而不是 MCP 自己伪造的界面。随包 `gui_quickstart_3d` 已于 2026-09-09 通过真实 MCP stdio 在 COMSOL 6.3 上完成创建、求解、结果树、PNG 导出和带解 MPH 保存；实测域平均温度为 25.0000 °C，解析值为 25 °C。
+
+![MCP 模式 COMSOL 6.3 三维温度场实测](mcp_backend/examples/validation/gui_quickstart_3d_comsol63.png)
+
 ## 可运行的中文示例
 
-MCP 后端随包提供 `heat_sink_3d` 原创三维传热示例，可用于验证从自然语言、建模、网格、稳态/瞬态求解到结果导出的完整链。案例数据和适用版本见 [验证记录](mcp_backend/examples/validation/README.md)。
+MCP 后端提供两个原创案例：`gui_quickstart_3d` 用于快速验证连接、GUI 查看、结果树、图片和 MPH；`heat_sink_3d` 用于验证网格细化、稳态/瞬态和能量平衡完整链。下方散热器记录来自 2026-09-05 的 COMSOL 6.2 实跑，日期与版本保留为历史运行身份；它不是 v1.1.0 的发布日期，也没有被文字改写成 6.3 结果。案例数据见[验证记录](mcp_backend/examples/validation/README.md)。
 
 ![三维散热器温度场示例](mcp_backend/examples/validation/temperature_3d.png)
 
@@ -119,6 +141,8 @@ comsol-research-workflow/
 ├── scripts/java-mode.ps1      # Java 模式入口
 ├── scripts/validate_run_evidence.py
 ├── references/
+│   ├── troubleshooting-efficiency.md
+│   └── version-compatibility.md
 ├── assets/social-preview.png
 ├── assets/icon-400.png
 ├── assets/icon-800.png
@@ -137,6 +161,6 @@ comsol-research-workflow/
 
 ## 状态
 
-`v1.0.1`：Java/MCP 双后端、中文自然语言入口、所见即所得 MPH 交付和分级科研工作流。
+`v1.1.0`：增加 Java 默认启用的 COMSOL 官方进度窗口、COMSOL 6.3 MCP 快速 GUI 实测、症状驱动的报错恢复和跨版本兼容支持。
 
 COMSOL Multiphysics 是 COMSOL AB 的商业软件及商标。本项目独立开发，与 COMSOL AB 无隶属或背书关系。
